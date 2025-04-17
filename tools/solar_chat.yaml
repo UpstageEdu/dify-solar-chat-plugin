@@ -1,0 +1,82 @@
+identity:
+  name: solar_chat
+  author: upstage
+  label:
+    en_US: Upstage Solar Chat
+    zh_Hans: Upstage Solar Chat
+    pt_BR: Upstage Solar Chat
+    ko_KR: 업스테이지 Solar 챗봇
+
+description:
+  human:
+    en_US: Chat with Upstage's Solar LLM using configurable parameters including model, system prompt, temperature, and max response length.
+    zh_Hans: 使用 Upstage 的 Solar LLM 进行聊天，可配置模型、系统提示、温度和最大响应长度。
+    pt_BR: Converse com o Solar LLM da Upstage com parâmetros configuráveis como modelo, prompt do sistema, temperatura e comprimento máximo da resposta.
+    ko_KR: 업스테이지 Solar LLM과 대화하세요. 모델, 시스템 프롬프트, 온도, 최대 응답 길이 등의 설정이 가능합니다.
+  llm: Chat with Upstage's Solar LLM
+
+parameters:
+  - name: messages
+    type: string
+    required: true
+    label:
+      en_US: Messages
+    human_description:
+      en_US: Full message history including previous user and assistant turns
+    llm_description: Chat history used to generate the next reply
+    form: llm
+
+  - name: model
+    type: select
+    required: false
+    default: solar-pro
+    options:
+      - value: solar-pro
+        label:
+          en_US: solar-pro
+      - value: solar-mini
+        label:
+          en_US: solar-mini
+    label:
+      en_US: Model
+    human_description:
+      en_US: Select the Solar model to use
+    llm_description: The Solar model ID
+    form: llm
+
+  - name: system_prompt
+    type: string
+    required: false
+    label:
+      en_US: System Prompt
+    human_description:
+      en_US: Optional system-level instruction to guide the assistant's behavior
+    llm_description: Optional system prompt for initial assistant behavior
+    form: llm
+
+  - name: temperature
+    type: number
+    required: false
+    default: 0.5
+    label:
+      en_US: Temperature
+    human_description:
+      en_US: Controls randomness. Lower is more deterministic.
+    llm_description: Sampling temperature between 0 and 1
+    form: llm
+
+  - name: max_tokens
+    type: number
+    required: false
+    default: 2048
+    label:
+      en_US: Max Tokens
+    human_description:
+      en_US: Maximum number of tokens in the response
+    llm_description: Maximum response length in tokens
+    form: llm
+
+extra:
+  python:
+    source: tools/solar_chat.py
+
